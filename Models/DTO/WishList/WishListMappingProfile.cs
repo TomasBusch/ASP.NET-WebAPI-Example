@@ -3,12 +3,12 @@
 
 namespace WebAPI.Models.DTO.WishList
 {
-    public class WishListMappingProfile : Profile
+    public class CategoryMappingProfile : Profile
     {
-        public WishListMappingProfile() { 
+        public CategoryMappingProfile() { 
         
             CreateMap<Models.WishList, GetWishListDTO>();
-            CreateMap<SetWishListDTO, Models.WishList>();
+            CreateMap<SetCategoryDTO, Models.WishList>();
 ;        }
     }
 }

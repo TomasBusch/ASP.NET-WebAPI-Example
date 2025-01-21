@@ -8,7 +8,7 @@ namespace WebAPI.Data_Access
     public class GenericRepository<TEntity>: IGenericRepository<TEntity> where TEntity : class
     {
         internal AppDbContext _dbContext;
-        internal DbSet<TEntity> dbSet;
+        public DbSet<TEntity> dbSet { get; }
 
         public GenericRepository(AppDbContext dbContext)
         {
@@ -17,12 +17,12 @@ namespace WebAPI.Data_Access
             this.dbSet = _dbContext.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public async virtual Task<IEnumerable<TEntity>> GetAll()
         {
             return dbSet.ToList();
         }
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, List<string>? includeProperties = null, int offset = 0, int count = 100)
+        public async virtual Task<IEnumerable<TEntity>> Get(int offset = 0, int count = 100, Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, List<string>? includeProperties = null)
         {
             IQueryable<TEntity> query = this.dbSet;
 
@@ -50,14 +50,14 @@ namespace WebAPI.Data_Access
             return query.ToList();
         }
 
-        public virtual TEntity? GetById(int id)
+        public async virtual Task<TEntity?> GetById(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public async virtual void Insert(TEntity entity)
         {
-            dbSet.Add(entity);
+            await dbSet.AddAsync(entity);
         }
 
         public virtual void Update(TEntity entity)

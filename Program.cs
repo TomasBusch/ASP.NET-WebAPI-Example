@@ -179,6 +179,7 @@ namespace WebAPI
         private static void InitServices(WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IProductsService, ProductsService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

@@ -12,11 +12,11 @@ namespace WebAPI.Data_Access
         private ILogger _Logger;
 
         private IGenericRepository<Cart> _cartRepository;
-        public IGenericRepository<Tag> _tagRepository;
-        public IGenericRepository<Category> _categoryRepository;
-        public IGenericRepository<Order> _orderRepository;
-        public IGenericRepository<Product> _productRepository;
-        public IGenericRepository<WishList> _wishlistRepository;
+        private IGenericRepository<Tag> _tagRepository;
+        private IGenericRepository<Category> _categoryRepository;
+        private IGenericRepository<Order> _orderRepository;
+        private IGenericRepository<Product> _productRepository;
+        private IGenericRepository<WishList> _wishlistRepository;
 
         public IGenericRepository<Cart> CartRepository
         { 
