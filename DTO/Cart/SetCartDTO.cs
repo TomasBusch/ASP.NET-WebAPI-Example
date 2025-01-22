@@ -1,4 +1,6 @@
-﻿namespace WebAPI.DTO.Cart
+﻿using WebAPI.DTO.CartItem;
+
+namespace WebAPI.DTO.Cart
 {
     public class SetCartDTO
     {
