@@ -1,5 +1,5 @@
 ﻿using WebAPI.Models;
-using WebAPI.Models.DTO.Product;
+using WebAPI.DTO.Product;
 
 namespace WebAPI.Services
 {

@@ -1,6 +1,6 @@
 ﻿
 
-namespace WebAPI.Models.DTO.Category
+namespace WebAPI.DTO.Category
 {
     public class GetCategoryDTO
     {

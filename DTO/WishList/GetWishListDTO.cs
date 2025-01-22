@@ -1,6 +1,6 @@
-﻿using WebAPI.Models.DTO.Product;
+﻿using WebAPI.DTO.Product;
 
-namespace WebAPI.Models.DTO.WishList
+namespace WebAPI.DTO.WishList
 {
     public class GetWishListDTO
     {

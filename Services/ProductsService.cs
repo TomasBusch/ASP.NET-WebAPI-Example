@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using WebAPI.Data_Access;
 using WebAPI.Models;
-using WebAPI.Models.DTO.Product;
+using WebAPI.DTO.Product;
 
 namespace WebAPI.Services
 {

@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Models.DTO.WishList
+﻿namespace WebAPI.DTO.WishList
 {
-    public class SetCategoryDTO
+    public class SetWishListDTO
     {
         public int Id { get; set; }
         public required string Title { get; set; }

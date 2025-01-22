@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using WebAPI.DTO.OrderItem;
 
-namespace WebAPI.Models.DTO.Order
+namespace WebAPI.DTO.Order
 {
     public class GetOrderDTO
     {
@@ -8,7 +9,7 @@ namespace WebAPI.Models.DTO.Order
 
         [Column(TypeName = "Date")]
         public DateTime TransactionDateTime { get; set; }
-        public required AppUser Buyer { get; set; }
-        public required IEnumerable<OrderItem> Items { get; set; }
+        public required int BuyerId { get; set; }
+        public required IEnumerable<GetOrderItemDTO> Items { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 
-namespace WebAPI.Models.DTO.Order
+namespace WebAPI.DTO.Order
 {
     public class OrderMappingProfile : Profile
     {

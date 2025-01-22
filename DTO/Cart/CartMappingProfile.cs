@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace WebAPI.Models.DTO.Cart
+namespace WebAPI.DTO.Cart
 {
     public class CartMappingProfile : Profile
     {

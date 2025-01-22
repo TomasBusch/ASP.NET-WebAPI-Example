@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 
-namespace WebAPI.Models.DTO.Tag
+namespace WebAPI.DTO.Tag
 {
     public class TagMappingProfile : Profile
     {

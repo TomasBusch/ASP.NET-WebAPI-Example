@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Models.DTO.Product;
+using WebAPI.DTO.Product;
 using WebAPI.Services;
 
 namespace WebAPI.Controllers
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpPost()]
         public async Task<ActionResult> Create([FromBody] SetProductDTO product)
         {
-            await ProductsService.createProduct(product);
+            ProductsService.createProduct(product);
 
             return Ok();
         }

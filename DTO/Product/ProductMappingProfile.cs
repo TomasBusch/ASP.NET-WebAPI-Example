@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 
-namespace WebAPI.Models.DTO.Product
+namespace WebAPI.DTO.Product
 {
     public class ProductMappingProfile : Profile
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAPI.Models.DTO.Product
+namespace WebAPI.DTO.Product
 {
     public class SearchProductDTO
     {
