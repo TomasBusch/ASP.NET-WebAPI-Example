@@ -1,8 +1,10 @@
-﻿namespace WebAPI.DTO.OrderItem
+﻿using WebAPI.DTO.Product;
+
+namespace WebAPI.DTO.OrderItem
 {
     public class SetOrderItemDTO
     {
-        public int Id { get; set; }
-        public IEnumerable<SetOrderItemDTO>? Items { get; set; }
+        public int Count { get; set; }
+        public int ProductId { get; set; }
     }
 }

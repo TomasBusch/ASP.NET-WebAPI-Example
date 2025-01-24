@@ -23,7 +23,6 @@ namespace WebAPI.Services
             var products = await _unitOfWork.ProductRepository.Get(offset: offset, count: count, filter: s => s.Discontinued == false);
 
             return _mapper.Map<List<GetProductDTO>>(products);
-            
         }
 
         public async Task<IEnumerable<GetProductDTO>> getAllProducts(int offset, int count)
@@ -45,20 +44,35 @@ namespace WebAPI.Services
             return _mapper.Map<GetProductDTO>(await _unitOfWork.ProductRepository.GetById(id));
         }
 
-        public async void createProduct(SetProductDTO product)
+        public async Task<bool> createProduct(SetProductDTO product)
         {
-            _unitOfWork.ProductRepository.Insert(_mapper.Map<Product>(product));
-            _unitOfWork.Save();
+            await _unitOfWork.ProductRepository.Insert(_mapper.Map<Product>(product));
+            await _unitOfWork.Save();
+
+            return true;
         }
 
-        public void deleteProduct(int id)
+        public async Task<bool> deleteProduct(int id)
         {
-            _unitOfWork.ProductRepository.Delete(id);
+            await _unitOfWork.ProductRepository.Delete(id);
+
+            return true;
         }
 
-        public void updateProduct(SetProductDTO product)
+        public async Task<bool> updateProduct(SetProductDTO product, Object id)
         {
-            throw new NotImplementedException();
+            var DbProduct = await _unitOfWork.ProductRepository.GetById((int)id);
+
+            if (DbProduct != null)
+            {
+                _mapper.Map(product, DbProduct);
+                await _unitOfWork.ProductRepository.Update(DbProduct);
+                await _unitOfWork.Save();
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

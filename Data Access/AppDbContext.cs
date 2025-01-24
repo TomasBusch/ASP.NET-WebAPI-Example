@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebAPI;
 using WebAPI.Models;
+using System.Reflection.Emit;
 
 namespace WebAPI.Data_Access.Database
 {
@@ -12,7 +13,14 @@ namespace WebAPI.Data_Access.Database
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
             base(options)
-        { }
+        { 
+        
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -8,6 +8,7 @@ namespace WebAPI.DTO.OrderItem
         
             CreateMap<Models.OrderItem, GetOrderItemDTO>();
             CreateMap<SetOrderItemDTO, Models.OrderItem>();
+            CreateMap<UpdateOrderItemDTO, Models.OrderItem>();
 ;        }
     }
 }

@@ -92,9 +92,11 @@ namespace WebAPI.Data_Access
             _Logger = logger;
         }
 
-        public void Save()
+        public async Task<bool> Save()
         {
-            _Context.SaveChanges();
+            await _Context.SaveChangesAsync();
+
+            return true;
         }
 
         private bool disposed = false;

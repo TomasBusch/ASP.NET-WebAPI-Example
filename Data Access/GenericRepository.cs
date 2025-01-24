@@ -55,16 +55,20 @@ namespace WebAPI.Data_Access
             return await dbSet.FindAsync(id);
         }
 
-        public async virtual void Insert(TEntity entity)
+        public async virtual Task<bool> Insert(TEntity entity)
         {
             await dbSet.AddAsync(entity);
+
+            return true;
         }
 
-        public virtual void Update(TEntity entity)
+        public async virtual Task<bool> Update(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
+
+            return true;
         }
-        public virtual void Delete(int id)
+        public async virtual Task<bool> Delete(int id)
         {
             TEntity? entity = dbSet.Find(id);
 
@@ -72,15 +76,19 @@ namespace WebAPI.Data_Access
             {
                 dbSet.Remove(entity);
             }
+
+            return true;
         }
 
-        public virtual void Delete(TEntity entityToDelete)
+        public async virtual Task<bool> Delete(TEntity entityToDelete)
         {
             if (_dbContext.Entry(entityToDelete).State == EntityState.Detached)
             {
                 dbSet.Attach(entityToDelete);
             }
             dbSet.Remove(entityToDelete);
+
+            return true;
         }
     }
 }

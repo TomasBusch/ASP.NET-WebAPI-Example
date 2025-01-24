@@ -9,6 +9,7 @@ namespace WebAPI.DTO.Tag
         
             CreateMap<Models.Tag, GetTagDTO>();
             CreateMap<SetTagDTO, Models.Tag>();
+            CreateMap<UpdateTagDTO, Models.Tag>();
 ;        }
     }
 }

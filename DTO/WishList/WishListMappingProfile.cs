@@ -9,6 +9,7 @@ namespace WebAPI.DTO.WishList
         
             CreateMap<Models.WishList, GetWishListDTO>();
             CreateMap<SetWishListDTO, Models.WishList>();
+            CreateMap<UpdateWishListDTO, Models.WishList>();
 ;        }
     }
 }

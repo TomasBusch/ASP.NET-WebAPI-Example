@@ -7,7 +7,7 @@ namespace WebAPI.Data_Access
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         public DbSet<TEntity> dbSet { get; }
-        public void Insert(TEntity entity);
+        public Task<bool> Insert(TEntity entity);
         public Task<TEntity?> GetById(int id);
         public Task<IEnumerable<TEntity>> Get(
             int offset = 0,
@@ -17,8 +17,8 @@ namespace WebAPI.Data_Access
             List<string>? includeProperties = null
         );
         public Task<IEnumerable<TEntity>> GetAll();
-        public void Update(TEntity entity);
-        public void Delete(int id);
-        public void Delete(TEntity entityToDelete);
+        public Task<bool> Update(TEntity entity);
+        public Task<bool> Delete(int id);
+        public Task<bool> Delete(TEntity entityToDelete);
     }
 }

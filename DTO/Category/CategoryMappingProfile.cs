@@ -8,6 +8,7 @@ namespace WebAPI.DTO.Category
         
             CreateMap<Models.Category, GetCategoryDTO>();
             CreateMap<SetCategoryDTO, Models.Category>();
+            CreateMap<UpdateCategoryDTO, Models.Category>();
 ;        }
     }
 }

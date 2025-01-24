@@ -13,10 +13,10 @@ namespace WebAPI.Services
 
         public Task<GetProductDTO> getProductById(int id);
 
-        public void createProduct(SetProductDTO product);
+        public Task<bool> createProduct(SetProductDTO product);
 
-        public void updateProduct(SetProductDTO product);
+        public Task<bool> updateProduct(SetProductDTO product, Object id);
 
-        public void deleteProduct(int id);
+        public Task<bool> deleteProduct(int id);
     }
 }

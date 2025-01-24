@@ -1,15 +1,18 @@
 
 using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Configuration;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebAPI.Data_Access;
 using WebAPI.Data_Access.Database;
+using WebAPI.Models;
 using WebAPI.Services;
 using WebAPI.Swagger;
 
@@ -23,13 +26,13 @@ namespace WebAPI
 
             InitLogging(builder);
 
-            InitCors(builder);
-
-            InitAutoMapper(builder);
-
             InitDatabase(builder);
 
             InitIdentity(builder);
+
+            //InitCors(builder);
+
+            InitAutoMapper(builder);
 
             InitApiVersioning(builder);
 
@@ -39,18 +42,36 @@ namespace WebAPI
             
 
             var app = builder.Build();
-
             UseSwagger(app);
 
-            UseCors(app);
+            //UseCors(app);
 
             app.UseHttpsRedirection();
-            app.UseAuthorization();
             app.UseRouting();
-
             app.MapIdentityApi<Models.AppUser>();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+                try
+                {
+                    var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+
+                    var roleManager = serviceProvider.GetRequiredService<RoleManager<AppRole>>();
+
+                    IdentityInitializer.SeedData(userManager, roleManager);
+                }
+                catch
+                {
+
+                }
+            }
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.MapControllers();
-            app.MapRazorPages();
+            //app.MapRazorPages();
             app.Run();
         }
 
@@ -73,8 +94,8 @@ namespace WebAPI
                 options.AddPolicy(name: CORSDebugPolicy,
                                   policy =>
                                   {
-                                      policy.WithOrigins("http://localhost",
-                                                         "https://localhost");
+                                      policy.WithOrigins("http://localhost:5131",
+                                                         "https://localhost:5131");
                                   });
             });
 
@@ -124,7 +145,12 @@ namespace WebAPI
             .AddEntityFrameworkStores<AppDbContext>()
             ;
 
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthentication().AddCookie();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanEditProduct", policy => policy.RequireRole("Admin", "Editor"));
+            });
         }
 
         private static void InitApiVersioning(WebApplicationBuilder builder)
@@ -180,6 +206,7 @@ namespace WebAPI
         {
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
+            builder.Services.AddScoped<IWishListService, WishlistService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

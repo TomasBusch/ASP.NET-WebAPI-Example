@@ -29,6 +29,6 @@ namespace WebAPI.Data_Access
         //void Rollback();
 
         //DbContext Class SaveChanges method
-        void Save();
+        public Task<bool> Save();
     }
 }

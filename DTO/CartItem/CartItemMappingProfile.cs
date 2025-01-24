@@ -8,6 +8,7 @@ namespace WebAPI.DTO.CartItem
         
             CreateMap<Models.CartItem, GetCartItemDTO>();
             CreateMap<SetCartItemDTO, Models.CartItem>();
+            CreateMap<UpdateCartItemDTO, Models.CartItem>();
 ;        }
     }
 }
