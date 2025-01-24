@@ -2,9 +2,9 @@
 {
     public interface IFileStorage
     {
-        public Task<bool> SaveFileAsync();
+        public Task<bool> SaveFileAsync(string FilePath, string FileName);
 
-        public Task<bool> DeleteFileAsync();
+        public Task<bool> DeleteFileAsync(string FileId);
 
     }
 }

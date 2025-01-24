@@ -1,4 +1,5 @@
 
+using Amazon.S3;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -207,6 +208,9 @@ namespace WebAPI
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IProductsService, ProductsService>();
             builder.Services.AddScoped<IWishListService, WishlistService>();
+            builder.Services.AddScoped<IFileStorage, S3FileStorage>();
+            builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+            builder.Services.AddAWSService<IAmazonS3>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
